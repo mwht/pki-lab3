@@ -20,6 +20,10 @@ public class CookieServlet extends HttpServlet {
         try {
             if (loggedIn == null) {
                 loggedIn = false;
+            } else if (loggedIn) {
+                // TODO: logged in
+            } else {
+                // TODO: not logged in
             }
         } finally {
             out.close();
