@@ -12,4 +12,13 @@
         <url-pattern>/CookieServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CounterServlet</servlet-name>
+        <servlet-class>pl.mwht.CounterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CounterServlet</servlet-name>
+        <url-pattern>/CounterServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

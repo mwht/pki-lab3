@@ -11,6 +11,6 @@
     <title>$Title$</title>
   </head>
   <body>
-  <a href="CookieServlet">Go to servlet</a>
+  <a href="CounterServlet">Go to counter servlet</a>
   </body>
 </html>
