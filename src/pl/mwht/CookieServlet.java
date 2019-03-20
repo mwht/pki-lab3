@@ -16,17 +16,20 @@ public class CookieServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession(true);
 
+        String action = request.getParameter("akcja");
+        if(action != null) {
+            if(action.equals("wyloguj")) {
+                Boolean wartosc = false;
+                session.setAttribute("zalogowany", wartosc);
+            }
+        }
+
         response.setContentType("text/html; charset=utf-8");
 
         Boolean loggedIn = (Boolean) session.getAttribute("zalogowany");
         try {
             if (loggedIn == null || !loggedIn) { // not logged in
                 loggedIn = false;
-                out.println("<form method=\"GET\">\n" +
-                        "<input type=\"text\" name=\"user\" />\n" +
-                        "<input type=\"password\" name=\"pass\" />\n" +
-                        "<input type=\"submit\" value=\"zaloguj\" />\n" +
-                        "</form>\n");
 
                 String user, pass;
                 user = request.getParameter("user");
@@ -38,8 +41,22 @@ public class CookieServlet extends HttpServlet {
                         session.setAttribute("zalogowany", loggedIn);
                     }
                 }
-            } else { // logged in
-                // TODO: logged in
+
+                if(!loggedIn) {
+                    out.println("<form method=\"GET\">\n" +
+                            "<input type=\"text\" name=\"user\" />\n" +
+                            "<input type=\"password\" name=\"pass\" />\n" +
+                            "<input type=\"submit\" value=\"zaloguj\" />\n" +
+                            "</form>\n");
+                }
+            }
+
+            if(loggedIn) {
+                out.println("<h1>ZALOGOWANY</h1>");
+                out.println("<form method=\"GET\">");
+                out.println("<input type=\"hidden\" name=\"akcja\" value=\"wyloguj\" />");
+                out.println("<input type=\"submit\" value=\"Wyloguj\" />");
+                out.println("</form>");
             }
         } finally {
             out.close();
