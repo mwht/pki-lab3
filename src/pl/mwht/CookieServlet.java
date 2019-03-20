@@ -18,12 +18,17 @@ public class CookieServlet extends HttpServlet {
 
         Boolean loggedIn = (Boolean) session.getAttribute("zalogowany");
         try {
-            if (loggedIn == null) {
+            if (loggedIn == null || !loggedIn) {
                 loggedIn = false;
+                out.println("<form method=\"GET\">\n" +
+                        "<input type=\"text\" name=\"user\" />\n" +
+                        "<input type=\"password\" name=\"pass\" />\n" +
+                        "<input type=\"submit\" value=\"zaloguj\" />\n" +
+                        "</form>\n");
             } else if (loggedIn) {
                 // TODO: logged in
             } else {
-                // TODO: not logged in
+
             }
         } finally {
             out.close();
