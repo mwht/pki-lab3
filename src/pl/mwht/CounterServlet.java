@@ -35,7 +35,7 @@ public class CounterServlet extends HttpServlet {
                 licznik.setValue(v + "");
             }
 
-            licznik.setMaxAge(-1);
+            licznik.setMaxAge(3600*24);
             response.addCookie(licznik);
 
             out.println(licznik.getValue());
